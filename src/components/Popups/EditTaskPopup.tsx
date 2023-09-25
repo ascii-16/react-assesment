@@ -4,11 +4,11 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { MobileDateTimePicker } from '@mui/x-date-pickers';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { CreateTaskArgs, Task } from '../../types/task.type';
-import { useTaskContext } from '../../contexts/task-context';
+import { useTaskContext } from '../../contexts/TaskContext';
 
 interface Props {
   task: Task;
@@ -17,6 +17,7 @@ interface Props {
 }
 
 const EditTaskPopup = ({ task, isOpen, onClose }: Props) => {
+  const [open, setOpen] = useState(isOpen);
   const { handleSubmit, control, reset, setValue } = useForm<CreateTaskArgs>();
   const { editTask } = useTaskContext();
 
@@ -28,8 +29,13 @@ const EditTaskPopup = ({ task, isOpen, onClose }: Props) => {
     }
   }, [task]);
 
+  useEffect(() => {
+    setOpen(isOpen);
+  }, [isOpen]);
+
   const handleClose = () => {
     reset();
+    setOpen(false);
     onClose();
   };
 
@@ -40,8 +46,8 @@ const EditTaskPopup = ({ task, isOpen, onClose }: Props) => {
 
   return (
     <div>
-      <Dialog open={isOpen} onClose={handleClose}>
-        <DialogTitle>Add Task</DialogTitle>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Edit Task</DialogTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogContent>
             <Controller
