@@ -1,6 +1,5 @@
 import { act } from 'react-dom/test-utils'; // Import act for testing asynchronous code if needed
 import { renderHook } from '@testing-library/react-hooks';
-import { v4 as uuidv4 } from 'uuid';
 import { TaskProvider, useTaskContext } from '../TaskContext';
 import { Task } from '../../types/task.type';
 
@@ -11,7 +10,6 @@ test('addTask - adds a task to the context', () => {
 
   act(() => {
     result.current.addTask({
-      id: uuidv4(),
       name: 'Test',
       description: 'test task',
     });
@@ -29,7 +27,6 @@ test('editTask - edits a task from the context', () => {
 
   act(() => {
     result.current.addTask({
-      id: uuidv4(),
       name: 'Test',
       description: 'test task',
     });
@@ -55,7 +52,6 @@ test('deleteTask - deletes a task from the context', () => {
 
   act(() => {
     result.current.addTask({
-      id: uuidv4(),
       name: 'Test',
       description: 'test task',
     });
@@ -85,7 +81,6 @@ test('getTask - gets a single task from the context', () => {
 
   act(() => {
     result.current.addTask({
-      id: uuidv4(),
       name: 'Test',
       description: 'test task',
     });
