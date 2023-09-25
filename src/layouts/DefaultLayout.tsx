@@ -1,5 +1,5 @@
 import { type PropsWithChildren } from 'react';
-import { TaskProvider } from '../contexts/task-context';
+import { TaskProvider } from '../contexts/TaskContext';
 import Header from '../components/Header/Header';
 import { Container } from '@mui/material';
 import AddTaskPopup from '../components/Popups/AddTaskPopup';

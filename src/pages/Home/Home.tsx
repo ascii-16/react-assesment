@@ -7,7 +7,7 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import { useTaskContext } from '../../contexts/task-context';
+import { useTaskContext } from '../../contexts/TaskContext';
 import { Delete, Edit } from '@mui/icons-material';
 import dayjs from 'dayjs';
 import { type Task } from '../../types/task.type';
