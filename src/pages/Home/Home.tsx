@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { useTaskContext } from '../../contexts/task-context';
 import { Delete, Edit } from '@mui/icons-material';
+import dayjs from 'dayjs';
 import { type Task } from '../../types/task.type';
 import EditTaskPopup from '../../components/Popups/EditTaskPopup';
 
@@ -25,15 +26,29 @@ const GridCard = ({ task }: { task: Task }) => {
           <Typography variant="inherit" color="text.secondary" component="div">
             {task.description}
           </Typography>
+          {task.deadline && (
+            <Typography
+              variant="inherit"
+              color="text.secondary"
+              component="div"
+            >
+              {dayjs(task.deadline).format('MM/DD/YY')}
+            </Typography>
+          )}
         </CardContent>
         <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
           <IconButton
             aria-label="previous"
             onClick={() => setOpen((open) => !open)}
+            color="primary"
           >
             <Edit />
           </IconButton>
-          <IconButton aria-label="previous" onClick={() => deleteTask(task.id)}>
+          <IconButton
+            aria-label="previous"
+            onClick={() => deleteTask(task.id)}
+            color="error"
+          >
             <Delete />
           </IconButton>
         </Box>
