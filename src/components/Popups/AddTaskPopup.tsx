@@ -15,7 +15,9 @@ import { useTaskContext } from '../../contexts/task-context';
 
 const AddTaskPopup = () => {
   const [open, setOpen] = useState(false);
-  const { handleSubmit, control, reset } = useForm<CreateTaskArgs>();
+  const { handleSubmit, control, reset } = useForm<CreateTaskArgs>({
+    defaultValues: { name: '', description: '' },
+  });
   const { addTask } = useTaskContext();
 
   const handleClickOpen = () => {
@@ -29,6 +31,7 @@ const AddTaskPopup = () => {
 
   const onSubmit: SubmitHandler<CreateTaskArgs> = (data) => {
     addTask({ ...data, id: uuidv4() });
+    handleClose();
   };
 
   return (
