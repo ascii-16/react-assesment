@@ -20,7 +20,7 @@ const Header = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Nav
+            Task Manager
           </Typography>
         </Toolbar>
       </AppBar>

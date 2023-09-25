@@ -17,13 +17,21 @@ const GridCard = ({ task }: { task: Task }) => {
   const [open, setOpen] = useState(false);
   const { deleteTask } = useTaskContext();
   return (
-    <Card sx={{ display: 'flex' }}>
+    <Card
+      sx={{ display: 'flex' }}
+      style={{ boxShadow: 'none', backgroundColor: '#f9f9f9' }}
+    >
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent style={{ flex: 1 }}>
           <Typography component="div" variant="subtitle1" fontWeight={'bold'}>
             {task.name}
           </Typography>
-          <Typography variant="inherit" color="text.secondary" component="div">
+          <Typography
+            variant="inherit"
+            color="text.secondary"
+            component="div"
+            fontSize={'14px'}
+          >
             {task.description}
           </Typography>
           {task.deadline && (
@@ -31,6 +39,8 @@ const GridCard = ({ task }: { task: Task }) => {
               variant="inherit"
               color="text.secondary"
               component="div"
+              fontSize={'11px'}
+              marginTop={'4px'}
             >
               {dayjs(task.deadline).format('MM/DD/YY')}
             </Typography>
@@ -41,15 +51,17 @@ const GridCard = ({ task }: { task: Task }) => {
             aria-label="previous"
             onClick={() => setOpen((open) => !open)}
             color="primary"
+            size="small"
           >
-            <Edit />
+            <Edit fontSize={'small'} />
           </IconButton>
           <IconButton
             aria-label="previous"
             onClick={() => deleteTask(task.id)}
             color="error"
+            size="small"
           >
-            <Delete />
+            <Delete fontSize={'small'} />
           </IconButton>
         </Box>
       </Box>
