@@ -1,11 +1,11 @@
 import { type PropsWithChildren, createContext, useContext } from 'react';
-import { type Task, type Tasks } from '../types/task.type';
+import { CreateTaskArgs, type Task, type Tasks } from '../types/task.type';
 import { useLocalStorage } from 'usehooks-ts';
 
 export type TaskContextType = {
   tasks: Tasks;
   addTask: (task: Task) => void;
-  editTask: (id: string, data: Task) => void;
+  editTask: (id: string, data: CreateTaskArgs) => void;
   deleteTask: (id: string) => void;
   getTask: (id: string) => Task | undefined;
 };
@@ -23,8 +23,10 @@ export const TaskProvider = ({
     setTasks((tasks) => [...tasks, task]);
   };
 
-  const editTask = (id: string, data: Task) => {
-    setTasks((tasks) => tasks.map((task) => (task.id === id ? data : task)));
+  const editTask = (id: string, data: CreateTaskArgs) => {
+    setTasks((tasks) =>
+      tasks.map((task) => (task.id === id ? { ...task, ...data } : task))
+    );
   };
 
   const deleteTask = (id: string) => {
