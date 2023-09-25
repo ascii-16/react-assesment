@@ -2,6 +2,7 @@ import { type PropsWithChildren } from 'react';
 import { TaskProvider } from '../contexts/task-context';
 import Header from '../components/Header/Header';
 import { Container } from '@mui/material';
+import AddTaskPopup from '../components/Popups/AddTaskPopup.tsx/AddTaskPopup';
 
 const DefaultLayout = ({ children }: PropsWithChildren) => {
   return (
@@ -9,6 +10,7 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
       <Container>
         <Header />
         <div>{children}</div>
+        <AddTaskPopup />
       </Container>
     </TaskProvider>
   );
