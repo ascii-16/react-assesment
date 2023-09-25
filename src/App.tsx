@@ -1,10 +1,10 @@
 import './App.css';
-import DefaultLayout from './layouts/DefaultLayout';
+import Router from './routes';
 
 function App() {
   return (
     <>
-      <DefaultLayout />
+      <Router />
     </>
   );
 }
