@@ -1,8 +1,14 @@
-import { type PropsWithChildren, createContext } from 'react';
+import { type PropsWithChildren, createContext, useContext } from 'react';
 import { type Task, type Tasks } from '../types/task.type';
 import { useLocalStorage } from 'usehooks-ts';
 
-export type TaskContextType = {};
+export type TaskContextType = {
+  tasks: Tasks;
+  addTask: (task: Task) => void;
+  editTask: (id: string, data: Task) => void;
+  deleteTask: (id: string) => void;
+  getTask: (id: string) => Task | undefined;
+};
 
 export const TaskContext = createContext<TaskContextType | null>(null);
 
@@ -37,4 +43,14 @@ export const TaskProvider = ({
       {children}
     </TaskContext.Provider>
   );
+};
+
+export const useTaskContext = () => {
+  const context = useContext(TaskContext);
+
+  if (!context) {
+    throw new Error('TaskContext must be used inside the TaskProvider');
+  }
+
+  return context;
 };
