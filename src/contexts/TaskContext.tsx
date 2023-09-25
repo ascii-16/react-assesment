@@ -2,6 +2,7 @@ import { type PropsWithChildren, createContext, useContext } from 'react';
 import { CreateTaskArgs, type Task, type Tasks } from '../types/task.type';
 import { useLocalStorage } from 'usehooks-ts';
 import { v4 as uuidv4 } from 'uuid';
+import { DEFAULT_TASKS } from '../lib/constants';
 
 export type TaskContextType = {
   tasks: Tasks;
@@ -18,7 +19,7 @@ export type TaskProviderProps = {};
 export const TaskProvider = ({
   children,
 }: PropsWithChildren<TaskProviderProps>) => {
-  const [tasks, setTasks] = useLocalStorage<Tasks>('tasks', []);
+  const [tasks, setTasks] = useLocalStorage<Tasks>('tasks', DEFAULT_TASKS);
 
   const addTask = (task: CreateTaskArgs) => {
     setTasks((tasks) => [...tasks, { ...task, id: uuidv4() }]);
